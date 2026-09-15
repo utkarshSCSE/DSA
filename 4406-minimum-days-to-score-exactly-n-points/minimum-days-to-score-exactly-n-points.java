@@ -2,7 +2,7 @@ class Solution {
 
     int fun(int k, int s, int i, int[][] dp) {
         if (k == s) return 0;
-        if (k > s) return 1000000000;
+        if (k > s) return 1000;
         if (dp[k][i] != -1)
             return dp[k][i];
         int a = 1 + fun(k + i, s, i + 1, dp);
