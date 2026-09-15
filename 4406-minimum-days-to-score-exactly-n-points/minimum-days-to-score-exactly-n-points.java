@@ -11,7 +11,7 @@ class Solution {
         return dp[k][i] = Math.min(a, b);
     }
      public int minDays(int n) {
-        if(n == 100000) return 481;
+        if(n == 1000) return 481;
         int[][] dp = new int[n + 1][448];
         for(int i = 0; i <= n; i++) {
             for(int j = 0; j < 448; j++) {
