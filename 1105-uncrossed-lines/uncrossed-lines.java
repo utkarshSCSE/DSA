@@ -1,20 +1,31 @@
 class Solution {
+
+    int[][] dp = new int[501][501];
+    public int fun(int i, int j, int[] nums1, int[] nums2) {
+        if (i >= nums1.length || j >= nums2.length) {
+            return 0;
+        }
+        if (dp[i][j] != -1) {
+            return dp[i][j];
+        }
+        int m = 0;
+        if (nums1[i] == nums2[j]) {
+            int a = 1 + fun(i + 1, j + 1, nums1, nums2);
+            m = Math.max(m, a);
+        } else {
+            int a = fun(i + 1, j, nums1, nums2);
+            int b = fun(i, j + 1, nums1, nums2);
+            m = Math.max(m, a);
+            m = Math.max(m, b);
+        }
+        return dp[i][j] = m;
+    }
     public int maxUncrossedLines(int[] nums1, int[] nums2) {
-        int length1 = nums1.length;
-        int length2 = nums2.length;
-
-        int[][] dp = new int[length1 + 1][length2 + 1];
-
-        for (int i = 1; i <= length1; i++) {
-            for (int j = 1; j <= length2; j++) {
-                if (nums1[i - 1] == nums2[j - 1]) {
-                    dp[i][j] = dp[i - 1][j - 1] + 1;
-                } else {
-                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
-                }
+        for (int i = 0; i < 501; i++) {
+            for (int j = 0; j < 501; j++) {
+                dp[i][j] = -1;
             }
         }
-
-        return dp[length1][length2];
+        return fun(0, 0, nums1, nums2);
     }
 }
