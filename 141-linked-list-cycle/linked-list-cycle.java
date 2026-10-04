@@ -9,8 +9,6 @@
  *     }
  * }
  */
-import java.util.*;
-
 public class Solution {
     public boolean hasCycle(ListNode head) {
         Set<ListNode> visitedNodes = new HashSet<>();
